@@ -34,7 +34,8 @@ export default async function DirectoryPage() {
   const years = [...new Set(members.map((m) => m.new_man_year).filter(Boolean))].sort((a, b) => (b as number) - (a as number)) as number[];
   const states = [...new Set(members.map((m) => m.state).filter((v) => v && v.trim()))].sort() as string[];
 
-  const profilesByCowboyId: Record<number, (typeof publicProfiles)[0]> = {};
+  type ProfileRow = NonNullable<typeof publicProfiles>[number];
+  const profilesByCowboyId: Record<number, ProfileRow> = {};
   for (const p of publicProfiles ?? []) {
     if (p.cowboy_id) profilesByCowboyId[p.cowboy_id] = p;
   }

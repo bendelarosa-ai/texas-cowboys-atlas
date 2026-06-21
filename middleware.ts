@@ -1,6 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import type { CookieOptions } from "@supabase/ssr";
 
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
@@ -13,12 +12,13 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet: { name: string; value: string; options?: CookieOptions }[]) {
-          cookiesToSet.forEach(({ name, value }) =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setAll(cookiesToSet: any[]) {
+          cookiesToSet.forEach(({ name, value }: { name: string; value: string }) =>
             request.cookies.set(name, value)
           );
           supabaseResponse = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
+          cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options?: object }) =>
             supabaseResponse.cookies.set(name, value, options)
           );
         },

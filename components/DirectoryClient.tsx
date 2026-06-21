@@ -87,6 +87,9 @@ export default function DirectoryClient({ members, industries, years, states, us
             {username && (
               <span className="text-sm text-stone-400 hidden sm:block">@{username}</span>
             )}
+            <Link href="/chat" className="text-sm font-medium text-burnt border border-burnt hover:bg-burnt/5 px-3 py-1.5 rounded-lg transition-colors hidden sm:block">
+              Ask AI
+            </Link>
             <Link href="/profile" className="text-sm font-medium text-white bg-burnt hover:bg-burnt-dark px-3 py-1.5 rounded-lg transition-colors">
               My Profile
             </Link>

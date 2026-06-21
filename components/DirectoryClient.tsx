@@ -84,8 +84,11 @@ export default function DirectoryClient({ members, industries, years, states, us
             </div>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/profile" className="text-sm text-stone-600 hover:text-burnt font-medium transition-colors hidden sm:block">
-              {username ? `@${username}` : userEmail}
+            {username && (
+              <span className="text-sm text-stone-400 hidden sm:block">@{username}</span>
+            )}
+            <Link href="/profile" className="text-sm font-medium text-white bg-burnt hover:bg-burnt-dark px-3 py-1.5 rounded-lg transition-colors">
+              My Profile
             </Link>
             <button onClick={handleSignOut} className="text-sm text-stone-600 hover:text-burnt font-medium transition-colors">
               Sign out

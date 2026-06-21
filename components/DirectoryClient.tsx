@@ -74,7 +74,7 @@ export default function DirectoryClient({ members, industries, years, states, us
     <div className="min-h-screen bg-stone-50">
       <header className="bg-white border-b border-stone-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <Link href="/directory" className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-burnt flex items-center justify-center">
               <span className="text-white text-sm font-bold">TC</span>
             </div>
@@ -82,7 +82,7 @@ export default function DirectoryClient({ members, industries, years, states, us
               <p className="font-semibold text-stone-900 leading-tight">1922</p>
               <p className="text-xs text-stone-400 leading-tight">Texas Cowboys</p>
             </div>
-          </div>
+          </Link>
           <div className="flex items-center gap-4">
             <Link href="/profile" className="text-sm text-stone-600 hover:text-burnt font-medium transition-colors hidden sm:block">
               {username ? `@${username}` : userEmail}

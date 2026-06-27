@@ -126,9 +126,11 @@ export default function DirectoryClient({ members, industries, years, states, us
           </button>
         </div>
 
-        {firstName && (
+        {userEmail.toLowerCase() === "mitchellgreenberg9@gmail.com" ? (
+          <p className="text-2xl font-semibold text-burnt mb-4">Welcome Mitchell, you suck at golf!</p>
+        ) : firstName ? (
           <p className="text-2xl font-semibold text-burnt mb-4">Welcome {firstName}!</p>
-        )}
+        ) : null}
         <p className="text-sm text-stone-500 mb-4">
           {filtered.length} {filtered.length === 1 ? "member" : "members"}
           {filtered.length !== members.length && ` of ${members.length}`}

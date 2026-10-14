@@ -98,6 +98,10 @@ export default function DirectoryClient({ members, industries, years, states, us
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <p className="mx-auto mb-8 max-w-3xl text-center font-serif text-xl sm:text-2xl font-semibold uppercase tracking-wide text-stone-900">
+          &ldquo;Give the best you have to Texas, and the best will come back to you.&rdquo;
+        </p>
+
         <div className="bg-white rounded-xl border border-stone-200 p-4 mb-6 flex flex-col sm:flex-row gap-3">
           <input
             type="text"

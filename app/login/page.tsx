@@ -69,7 +69,7 @@ export default function LoginPage() {
       {/* Left: cannon photo (hidden on small screens) */}
       <div
         className="hidden md:block md:w-1/2 lg:w-[56%] bg-cover bg-center"
-        style={{ backgroundImage: "url('/login-cannon.webp')" }}
+        style={{ backgroundImage: "url('/login-cannon.jpg')" }}
       />
 
       {/* Right: sign-in panel */}

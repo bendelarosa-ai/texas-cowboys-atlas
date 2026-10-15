@@ -2,7 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Frosted-glass burnt-orange button */
+/* ---------------------------------------------------------------------------
+   Design system
+   Ink: stone-900 · Body: stone-700 · Secondary: stone-600 · Tertiary: stone-500
+   (stone-400 is decorative only — it fails AA contrast for text)
+   Accent: burnt (#BF5700) for primary actions, active states and small marks.
+   Serif (Cormorant Garamond) only for display headings and the motto.
+--------------------------------------------------------------------------- */
+
+@layer base {
+  :focus-visible {
+    @apply outline-none ring-2 ring-burnt/60 ring-offset-2 ring-offset-white;
+  }
+  ::selection {
+    @apply bg-burnt/15;
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-burnt text-white hover:bg-burnt-dark;
+  }
+  .btn-secondary {
+    @apply btn border border-stone-300 bg-white text-stone-800 hover:border-stone-400 hover:bg-stone-50;
+  }
+  .btn-ghost {
+    @apply btn text-stone-700 hover:bg-stone-100 hover:text-stone-900;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-[13px];
+  }
+
+  /* Form fields */
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-stone-800;
+  }
+  .field-hint {
+    @apply mt-1.5 text-[13px] text-stone-500;
+  }
+  .field-error {
+    @apply mt-1.5 text-[13px] text-red-700;
+  }
+  .input {
+    @apply block w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-[15px] text-stone-900 placeholder:text-stone-400 transition-colors focus:border-burnt focus:outline-none focus:ring-2 focus:ring-burnt/20 disabled:bg-stone-50 disabled:text-stone-500;
+  }
+  .input-invalid {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply rounded-xl border border-stone-200 bg-white;
+  }
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.12em] text-stone-500;
+  }
+
+  /* Chips & badges */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-3 py-1 text-[13px] text-stone-800;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+  .badge-burnt {
+    @apply badge bg-burnt/10 text-burnt-dark;
+  }
+  .badge-neutral {
+    @apply badge bg-stone-100 text-stone-700;
+  }
+
+  /* Skeleton */
+  .skeleton {
+    @apply animate-pulse rounded bg-stone-200/70;
+  }
+}
+
+@layer utilities {
+  /* Lets the browser skip layout/paint for off-screen directory cards. */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Frosted-glass burnt-orange button (login) */
 .btn-glass-burnt {
   background: linear-gradient(135deg, rgba(191, 87, 0, 0.88), rgba(139, 61, 0, 0.78));
   border: 1px solid rgba(255, 255, 255, 0.35);

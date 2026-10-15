@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 
 interface Message {
   role: "user" | "assistant";
@@ -13,9 +12,9 @@ interface Props {
 }
 
 const SUGGESTIONS = [
+  "Based on my profile, who should I have lunch with?",
   "How many cowboys live in Dallas?",
   "Which cowboys work in finance?",
-  "How many cowboys are CEOs?",
   "Which cowboy went to UT Law?",
 ];
 
@@ -45,6 +44,7 @@ export default function ChatClient({ firstName }: Props) {
         body: JSON.stringify({ messages: newMessages }),
       });
       const data = await res.json();
+      if (!res.ok || !data.reply) throw new Error(data.error);
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
     } catch {
       setMessages([...newMessages, { role: "assistant", content: "Something went wrong. Please try again." }]);
@@ -54,26 +54,8 @@ export default function ChatClient({ firstName }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col">
-      {/* Nav */}
-      <header className="bg-white border-b border-stone-200 sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/directory" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-burnt flex items-center justify-center">
-              <span className="text-white text-sm font-bold">TC</span>
-            </div>
-            <div>
-              <p className="font-semibold text-stone-900 leading-tight">1922</p>
-              <p className="text-xs text-stone-400 leading-tight">Texas Cowboys</p>
-            </div>
-          </Link>
-          <Link href="/directory" className="text-sm text-stone-600 hover:text-burnt font-medium transition-colors">
-            ← Directory
-          </Link>
-        </div>
-      </header>
-
-      {/* Chat area */}
+    <div className="min-h-[calc(100vh-4rem)] bg-stone-50 flex flex-col">
+      {/* Chat area — the shared app header comes from the (app) layout */}
       <div className="flex-1 max-w-4xl w-full mx-auto px-4 py-6 flex flex-col gap-4">
         {messages.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center text-center py-16 gap-6">
@@ -86,7 +68,7 @@ export default function ChatClient({ firstName }: Props) {
               <h1 className="text-2xl font-bold text-stone-900">
                 {firstName ? `What can I find for you, ${firstName}?` : "Ask anything about the Cowboys"}
               </h1>
-              <p className="text-stone-400 mt-2 text-sm">I have access to the full member directory.</p>
+              <p className="text-stone-400 mt-2 text-sm">I know the member directory and your profile.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
               {SUGGESTIONS.map((s) => (

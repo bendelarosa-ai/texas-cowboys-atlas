@@ -14,6 +14,10 @@ const config: Config = {
           dark: "#8B3D00",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
+      },
       animation: {
         marquee: "marquee 12s linear infinite",
       },
